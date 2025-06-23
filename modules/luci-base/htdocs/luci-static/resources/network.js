@@ -2956,6 +2956,7 @@ Device = baseclass.extend(/** @lends LuCI.network.Device.prototype */ {
 	 *  - `bridge` if it is a bridge device (e.g. `br-lan`)
 	 *  - `tunnel` if it is a tun or tap device (e.g. `tun0`)
 	 *  - `vlan` if it is a vlan device (e.g. `eth0.1`)
+	 *  - `vrf` if it is a Virtual Routing and Forwarding type (e.g. `vrf0`)
 	 *  - `switch` if it is a switch device (e.g.`eth1` connected to switch0)
 	 *  - `ethernet` for all other device types
 	 */
@@ -2966,6 +2967,8 @@ Device = baseclass.extend(/** @lends LuCI.network.Device.prototype */ {
 			return 'wifi';
 		else if (this.dev.devtype == 'bridge' || _state.isBridge[this.device])
 			return 'bridge';
+		else if (this.dev.devtype == 'wireguard')
+			return 'wireguard';
 		else if (_state.isTunnel[this.device])
 			return 'tunnel';
 		else if (this.dev.devtype == 'vlan' || this.device.indexOf('.') > -1)
@@ -2976,6 +2979,8 @@ Device = baseclass.extend(/** @lends LuCI.network.Device.prototype */ {
 			return 'vlan';
 		else if (this.config.type == 'bridge')
 			return 'bridge';
+		else if (this.config.type == 'vrf')
+			return 'vrf';
 		else
 			return 'ethernet';
 	},
@@ -3030,12 +3035,18 @@ Device = baseclass.extend(/** @lends LuCI.network.Device.prototype */ {
 		case 'bridge':
 			return _('Bridge');
 
+		case 'vrf':
+			return _('Virtual Routing and Forwarding (VRF)');
+
 		case 'switch':
 			return (_state.netdevs[this.device] && _state.netdevs[this.device].devtype == 'dsa')
 				? _('Switch port') : _('Ethernet Switch');
 
 		case 'vlan':
 			return (_state.isSwitch[this.device] ? _('Switch VLAN') : _('Software VLAN'));
+
+		case 'wireguard':
+			return _('WireGuard Interface');
 
 		case 'tunnel':
 			return _('Tunnel Interface');

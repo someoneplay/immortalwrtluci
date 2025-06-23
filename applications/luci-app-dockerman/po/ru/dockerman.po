@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-05-02 07:29+0000\n"
-"Last-Translator: Maksim_220 Кабанов <law820314@gmail.com>\n"
+"PO-Revision-Date: 2025-06-18 15:02+0000\n"
+"Last-Translator: SnIPeRSnIPeR <snipersniper@users.noreply.hosted.weblate.org>"
+"\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsdockerman/ru/>\n"
 "Language: ru\n"
@@ -9,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.12.1\n"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:604
 msgid "A list of kernel capabilities to add to the container"
@@ -61,7 +62,7 @@ msgstr "Базовое устройство"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:538
 msgid "Bind Mount(-v)"
-msgstr "Bind Mount(-v)"
+msgstr "Монтирование каталога(-v)"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:539
 msgid "Bind mount a volume"
@@ -90,7 +91,7 @@ msgstr ""
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newnetwork.lua:51
 msgid "Bridge (Support direct communication between MAC VLANs)"
-msgstr "Мост (Разрешено общение между разными MAC VLAN)"
+msgstr "Мост (поддержка прямого взаимодействия между MAC VLAN)"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newnetwork.lua:34
 msgid "Bridge device"
@@ -163,7 +164,7 @@ msgstr "Укажите корректную команду"
 
 #: applications/luci-app-dockerman/luasrc/controller/dockerman.lua:16
 msgid "Configuration"
-msgstr "Конфиг"
+msgstr "Конфигурация"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/configuration.lua:42
 msgid "Configure the default bridge network"
@@ -182,7 +183,7 @@ msgstr "Подключить сеть"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/configuration.lua:14
 msgid "Connect to remote endpoint"
-msgstr "Подключение к удаленной конечной точке"
+msgstr "Подключение к удалённой конечной точке"
 
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container.htm:7
 msgid "Console"
@@ -559,7 +560,7 @@ msgstr "MAC VLAN"
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:581
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:629
 msgid "Memory"
-msgstr "Оперативная память (RAM)"
+msgstr "Оперативная память"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:774
 msgid "Memory Usage"
@@ -611,7 +612,7 @@ msgstr "Название сети будет показано при созда�
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:520
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:132
 msgid "Network"
-msgstr "Сетевое подключение"
+msgstr "Сеть"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/networks.lua:77
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newnetwork.lua:28
@@ -679,8 +680,7 @@ msgstr "Родительский интерфейс"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newnetwork.lua:54
 msgid "Pass-through (Mirror physical device to single MAC VLAN)"
-msgstr ""
-"Сквозной (зеркальное отображение физического устройства в одной MAC VLAN)"
+msgstr "Сквозной (зеркалирование физического устройства на MAC VLAN)"
 
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container_file.htm:7
 msgid "Path"
@@ -711,7 +711,7 @@ msgstr "Порты"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newnetwork.lua:52
 msgid "Private (Prevent communication between MAC VLANs)"
-msgstr "Частная (запрет на общение между MAC VLAN-ами)"
+msgstr "Закрытые (блокировать связь между MAC VLAN)"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:489
 msgid "Privileged"
@@ -736,15 +736,15 @@ msgstr "Зеркала реестра"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/configuration.lua:13
 msgid "Remote Endpoint"
-msgstr "Удаленная конечная точка"
+msgstr "Удалённая конечная точка"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/configuration.lua:18
 msgid "Remote Host"
-msgstr "Удаленный хост"
+msgstr "Удалённый хост"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/configuration.lua:27
 msgid "Remote Port"
-msgstr "Удаленный порт"
+msgstr "Удалённый порт"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:272
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:229
@@ -890,8 +890,8 @@ msgstr "Параметры драйвера ведения журнала для
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:525
 msgid ""
-"The user that commands are run as inside the container.(format: name|uid[:"
-"group|gid])"
+"The user that commands are run as inside the container.(format: name|"
+"uid[:group|gid])"
 msgstr ""
 "Пользователь, от имени которого будут выполняться команды внутри контейнера. "
 "(формат: name|uid[:group|gid])"
@@ -940,7 +940,7 @@ msgstr "Обновить"
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container_file.htm:2
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container_file.htm:13
 msgid "Upload"
-msgstr "Выгрузить"
+msgstr "Загрузить"
 
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container_file.htm:46
 msgid "Upload Error"
@@ -964,7 +964,7 @@ msgstr "Пользователь (-u)"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newnetwork.lua:53
 msgid "VEPA (Virtual Ethernet Port Aggregator)"
-msgstr "VEPA (агрегатор портов виртуального Ethernet)"
+msgstr "VEPA (виртуальный агрегатор портов Ethernet)"
 
 #: applications/luci-app-dockerman/luasrc/controller/dockerman.lua:40
 #: applications/luci-app-dockerman/luasrc/view/dockerman/overview.htm:187
@@ -985,34 +985,4 @@ msgid ""
 "system and a valid image tar can be downloaded from remote."
 msgstr ""
 "По нажатии кнопки \"Импортировать\" в систему может быть загружен как "
-"локальный образ, так и tar-файл из удаленного репозитория."
-
-#~ msgid "CPU Useage"
-#~ msgstr "Использование ЦП"
-
-#~ msgid "Memory Useage"
-#~ msgstr "Использование памяти"
-
-#~ msgid "Setting"
-#~ msgstr "Настройка"
-
-#~ msgid "Github"
-#~ msgstr "GitHub"
-
-#~ msgid "Import Images"
-#~ msgstr "Импорт образов"
-
-#~ msgid "New Container"
-#~ msgstr "Новый контейнер"
-
-#~ msgid "New Network"
-#~ msgstr "Новая сеть"
-
-#~ msgid "Access Control"
-#~ msgstr "Контроль доступа"
-
-#~ msgid "Enable"
-#~ msgstr "Включить"
-
-#~ msgid "Server Host"
-#~ msgstr "Хост сервера"
+"локальный образ, так и tar-файл из удалённого репозитория."
