@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LuCI: base\n"
 "POT-Creation-Date: 2010-05-09 01:01+0300\n"
-"PO-Revision-Date: 2025-06-20 21:40+0000\n"
+"PO-Revision-Date: 2025-07-07 16:01+0000\n"
 "Last-Translator: SnIPeRSnIPeR <snipersniper@users.noreply.hosted.weblate.org>"
 "\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openwrt/luci/ru/>"
@@ -7284,7 +7284,7 @@ msgstr "Нет публичных ключей."
 
 #: modules/luci-base/htdocs/luci-static/resources/tools/views.js:20
 msgid "No related logs yet!"
-msgstr "Никаких связанных с этим журналов пока нет!"
+msgstr "Релевантные логи отсутствуют!"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js:616
 msgctxt "nft chain is empty"

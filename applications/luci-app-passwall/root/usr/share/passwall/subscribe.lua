@@ -418,12 +418,6 @@ local function UrlDecode(szText)
 	end) or nil
 end
 
--- trim
-local function trim(text)
-	if not text or text == "" then return "" end
-	return (sgsub(text, "^%s*(.-)%s*$", "%1"))
-end
-
 -- 取机场信息（剩余流量、到期时间）
 local subscribe_info = {}
 local function get_subscribe_info(cfgid, value)
@@ -627,8 +621,7 @@ local function processData(szType, content, add_mode, add_from)
 				local idx_pn = plugin_info:find(";")
 				if idx_pn then
 					result.plugin = plugin_info:sub(1, idx_pn - 1)
-					result.plugin_opts =
-						plugin_info:sub(idx_pn + 1, #plugin_info)
+					result.plugin_opts = plugin_info:sub(idx_pn + 1, #plugin_info)
 				else
 					result.plugin = plugin_info
 				end
@@ -726,8 +719,7 @@ local function processData(szType, content, add_mode, add_from)
 						result.plugin = nil
 						result.plugin_opts = nil
 					end
-				end
-				if result.type == "sing-box" then
+				else
 					result.plugin_enabled = "1"
 				end
 			end
@@ -867,6 +859,7 @@ local function processData(szType, content, add_mode, add_from)
 					end
 
 					if result.type == "SS-Rust" then
+						result.plugin_enabled = "1"
 						result.plugin = "shadow-tls"
 						result.plugin_opts = parseShadowTLSParams(params["shadow-tls"])
 					elseif result.type == "sing-box" then
@@ -1766,7 +1759,7 @@ local function parse_link(raw, add_mode, add_from, cfgid)
 					if szType == 'ssd' then
 						result = processData(szType, v, add_mode, add_from)
 					elseif not szType then
-						local node = trim(v)
+						local node = api.trim(v)
 						local dat = split(node, "://")
 						if dat and dat[1] and dat[2] then
 							if dat[1] == 'ss' or dat[1] == 'trojan' then
@@ -1893,7 +1886,7 @@ local execute = function()
 					local f = io.open(tmp_file, "r")
 					local stdout = f:read("*all")
 					f:close()
-					local raw_data = trim(stdout)
+					local raw_data = api.trim(stdout)
 					local old_md5 = value.md5 or ""
 					local new_md5 = luci.sys.exec("md5sum " .. tmp_file .. " 2>/dev/null | awk '{print $1}'"):gsub("\n", "")
 					os.remove(tmp_file)
