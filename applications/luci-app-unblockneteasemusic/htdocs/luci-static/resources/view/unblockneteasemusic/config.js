@@ -13,17 +13,7 @@
 'require ui';
 'require view';
 
-var CBIStaticList = form.DynamicList.extend({
-	__name__: 'CBI.StaticList',
-
-	renderWidget: function(/* ... */) {
-		var dl = form.DynamicList.prototype.renderWidget.apply(this, arguments);
-		dl.querySelector('.add-item ul > li[data-value="-"]')?.remove();
-		return dl;
-	}
-});
-
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: ['name'],
@@ -31,8 +21,8 @@ var callServiceList = rpc.declare({
 });
 
 function getServiceStatus() {
-	return L.resolveDefault(callServiceList('unblockneteasemusic'), {}).then(function (res) {
-		var isRunning = false;
+	return L.resolveDefault(callServiceList('unblockneteasemusic'), {}).then(function(res) {
+		let isRunning = false;
 		try {
 			isRunning = res['unblockneteasemusic']['instances']['unblockneteasemusic']['running'];
 		} catch (e) { }
@@ -41,13 +31,12 @@ function getServiceStatus() {
 }
 
 function renderStatus(isRunning) {
-	var spanTemp = '<em><span style="color:%s"><strong>%s %s</strong></span></em>';
-	var renderHTML;
-	if (isRunning) {
+	let spanTemp = '<em><span style="color:%s"><strong>%s %s</strong></span></em>';
+	let renderHTML;
+	if (isRunning)
 		renderHTML = spanTemp.format('green', _('UnblockNeteaseMusic'), _('运行中'));
-	} else {
+	else
 		renderHTML = spanTemp.format('red', _('UnblockNeteaseMusic'), _('未运行'));
-	}
 
 	return renderHTML;
 }
@@ -71,16 +60,16 @@ function uploadCertificate(type, filename, ev) {
 }
 
 return view.extend({
-	load: function() {
+	load() {
 		return Promise.all([
 			uci.load('unblockneteasemusic'),
 			network.getHostHints()
 		]);
 	},
 
-	render: function(data) {
-		var m, s, o;
-		var hosts = data[1]?.hosts;
+	render(data) {
+		let m, s, o;
+		let hosts = data[1]?.hosts;
 
 		m = new form.Map('unblockneteasemusic', _('解除网易云音乐播放限制'),
 			_('原理：采用 [Bilibili/JOOX/酷狗/酷我/咪咕/pyncmd/QQ/Youtube] 等音源，替换网易云音乐 无版权/收费 歌曲链接<br/>' +
@@ -105,16 +94,16 @@ return view.extend({
 
 		s = m.section(form.TypedSection);
 		s.anonymous = true;
-		s.render = function () {
-			poll.add(function () {
-				return L.resolveDefault(getServiceStatus()).then(function (res) {
-					var view = document.getElementById('service_status');
+		s.render = function() {
+			poll.add(function() {
+				return L.resolveDefault(getServiceStatus()).then(function(res) {
+					let view = document.getElementById('service_status');
 					view.innerHTML = renderStatus(res);
 				});
 			});
 
 			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
-					E('p', { id: 'service_status' }, _('收集数据中...'))
+				E('p', { id: 'service_status' }, _('收集数据中...'))
 			]);
 		}
 
@@ -124,9 +113,10 @@ return view.extend({
 		o.default = o.disabled;
 		o.rmempty = false;
 
-		o = s.option(CBIStaticList, 'music_source', _('音源接口'),
+		o = s.option(form.DynamicList, 'music_source', _('音源接口'),
 			_('留空以使用默认音源。'));
 		o.value('bilibili', _('Bilibili 音乐'));
+		o.value('bilivideo', _('Bilibili 音乐 (bilivideo)'));
 		o.value('joox', _('JOOX 音乐'));
 		o.value('kugou', _('酷狗音乐'));
 		o.value('kuwo', _('酷我音乐'));
@@ -136,6 +126,11 @@ return view.extend({
 		o.value('youtube', _('Youtube 音乐'));
 		o.value('youtubedl', _('Youtube 音乐（youtube-dl）'));
 		o.value('ytdlp', _('Youtube 音乐（yt-dlp）'));
+		o.renderWidget = function(/* ... */) {
+			let dl = form.DynamicList.prototype.renderWidget.apply(this, arguments);
+			dl?.querySelector('.add-item ul > li[data-value="-"]')?.remove();
+			return dl;
+		}
 
 		o = s.option(form.Value, 'joox_cookie', _('JOOX Cookie'),
 			_('在 joox.com 获取，需要 wmid 和 session_key 值。'));
@@ -213,7 +208,7 @@ return view.extend({
 
 		o = s.option(form.ListValue, 'update_time', '检查更新时间',
 			_('设定每天自动检查更新时间。'));
-		for (var i = 0; i < 24; i++)
+		for (let i = 0; i < 24; i++)
 			o.value(i, i + ':00');
 		o.default = '3';
 		o.depends('auto_update', '1');
@@ -224,8 +219,8 @@ return view.extend({
 		o.inputtitle = _('下载 ca.crt');
 		o.onclick = function() {
 			return fs.read_direct('/usr/share/unblockneteasemusic/core/ca.crt', 'blob').then(function(blob) {
-				var url = window.URL.createObjectURL(blob);
-				var link = E('a', { 'style': 'display:none', 'href': url, 'download': 'ca.crt' });
+				let url = window.URL.createObjectURL(blob);
+				let link = E('a', { 'style': 'display:none', 'href': url, 'download': 'ca.crt' });
 
 				document.body.appendChild(link);
 				link.click();
@@ -273,7 +268,7 @@ return view.extend({
 		o.depends('advanced_mode', '1');
 
 		o = s.option(form.ListValue, 'hijack_ways', _('劫持方法'),
-			 _('如果使用 Hosts 劫持，监听端口将固定为 80/443，请注意更改您的 webUI 端口。'));
+			_('如果使用 Hosts 劫持，监听端口将固定为 80/443，请注意更改您的 webUI 端口。'));
 		o.value('dont_hijack', _('不开启劫持'));
 		o.value('use_ipset', _('使用 NFTSet 劫持'));
 		o.value('use_hosts', _('使用 Hosts 劫持'));
@@ -341,7 +336,7 @@ return view.extend({
 		o = s.option(form.Value, 'mac_addr', _('MAC 地址'));
 		o.datatype = 'macaddr';
 		Object.keys(hosts).forEach(function(mac) {
-			var hint = hosts[mac].name || L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4)[0];
+			let hint = hosts[mac].name || L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4)[0];
 			o.value(mac, hint ? '%s (%s)'.format(mac, hint) : mac);
 		});
 		o.rmempty = false;
